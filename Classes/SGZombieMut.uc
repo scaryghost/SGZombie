@@ -14,8 +14,9 @@ struct dmgScale {
 };
 
 var array<oldNewZombiePair> replacementArray;
-var() globalconfig array<dmgScale> FPDmgScale;
-var() globalconfig array<dmgScale> SCDmgScale;
+var() config bool bLog;
+var() config array<dmgScale> FPDmgScale;
+var() config array<dmgScale> SCDmgScale;
 
 static function int diffToMask(int difficulty) {
     if (difficulty == 7) {
@@ -91,11 +92,28 @@ function PostBeginPlay() {
 
 }
 
+static function FillPlayInfo(PlayInfo PlayInfo) {
+
+    Super.FillPlayInfo(PlayInfo);
+   
+    PlayInfo.AddSetting("SGCustomZombie", "bLog", "Enable debug logging", 0, 0, "Check");
+}
+
+static event string GetDescriptionText(string property) {
+
+    if(property == "bLog") {
+        return "Check if you want debug output displayed in the chat box on screen";
+    }
+
+    return Super.GetDescriptionText(property);
+}
+
 defaultproperties {
     GroupName="KF"
     FriendlyName="SG Zombie"
     Description="Replaces the default specimens with a set of customized specimens that allow the user to configure their damage multipliers"
 
+    bLog= false;
     replacementArray(0)=(oldClass="KFChar.ZombieFleshPound_CIRCUS",NewClass="SGZombie.SGZombieFleshpound")
 }
 

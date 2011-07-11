@@ -63,7 +63,7 @@ function TakeDamage( int Damage, Pawn InstigatedBy, Vector Hitlocation, Vector M
 
 	TwoSecondDamageTotal += OldHealth - Health; // Corrected issue where only the Base Health is counted toward the FP's Rage in Balance Round 6(second attempt)
 
-    log("SGZombie.SGZombieFleshpound: Health lost: "$(OldHealth - Health));
+    class'SGZombieAux'.static.outputToChat(Level.ControllerList,"SGZombieFleshpound: Health lost: "$(OldHealth - Health));
 
 	if (!bDecapitated && TwoSecondDamageTotal > RageDamageThreshold && !bChargingPlayer &&
         (!(bCrispified && bBurnified) || bFrustrated) )
