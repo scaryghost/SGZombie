@@ -59,9 +59,6 @@ function TakeDamage( int Damage, Pawn InstigatedBy, Vector Hitlocation, Vector M
 
 	// Log (Damage);
 
-	if (damageType == class 'DamTypeVomit')
-		Damage = 0; // nulled
-
 	Super(KFMonster).takeDamage(Damage, instigatedBy, hitLocation, momentum, damageType,HitIndex) ;
 
 	TwoSecondDamageTotal += OldHealth - Health; // Corrected issue where only the Base Health is counted toward the FP's Rage in Balance Round 6(second attempt)

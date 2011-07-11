@@ -91,7 +91,7 @@ function PostBeginPlay() {
 }
 
 defaultproperties {
-    GroupName="SGZombieMut"
+    GroupName="KF"
     FriendlyName="SG Zombie"
     Description="Replaces the default specimens with a set of customized specimens that allow the user to configure their damage multipliers"
 
