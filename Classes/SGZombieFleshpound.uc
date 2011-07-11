@@ -1,4 +1,4 @@
-class SGZombieFleshpound extends ZombieFleshpound;
+class SGZombieFleshpound extends ZombieFleshpound_CIRCUS;
 
 function TakeDamage( int Damage, Pawn InstigatedBy, Vector Hitlocation, Vector Momentum, class<DamageType> damageType, optional int HitIndex)
 {
@@ -64,6 +64,7 @@ function TakeDamage( int Damage, Pawn InstigatedBy, Vector Hitlocation, Vector M
 	TwoSecondDamageTotal += OldHealth - Health; // Corrected issue where only the Base Health is counted toward the FP's Rage in Balance Round 6(second attempt)
 
     class'SGZombieAux'.static.outputToChat(Level.ControllerList,"SGZombieFleshpound: Health lost: "$(OldHealth - Health));
+    class'SGZombieAux'.static.outputToChat(Level.ControllerList,"SGZombieFleshpound: Damage type: "$(String(damageType)));
 
 	if (!bDecapitated && TwoSecondDamageTotal > RageDamageThreshold && !bChargingPlayer &&
         (!(bCrispified && bBurnified) || bFrustrated) )

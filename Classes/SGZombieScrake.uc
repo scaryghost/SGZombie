@@ -1,4 +1,4 @@
-class SGZombieScrake extends ZombieScrake;
+class SGZombieScrake extends ZombieScrake_CIRCUS;
 
 function TakeDamage( int Damage, Pawn InstigatedBy, Vector Hitlocation, Vector Momentum, class<DamageType> damageType, optional int HitIndex)
 {
@@ -17,6 +17,8 @@ function TakeDamage( int Damage, Pawn InstigatedBy, Vector Hitlocation, Vector M
 	Super(KFMonster).TakeDamage(Damage, instigatedBy, hitLocation, momentum, damageType, HitIndex);
 
     class'SGZombieAux'.static.outputToChat(Level.ControllerList,"SGZombieScrake: Health lost: "$(OldHealth - Health));
+    class'SGZombieAux'.static.outputToChat(Level.ControllerList,"SGZombieScrake: Damage type: "$(String(damageType)));
+
 	// Added in Balance Round 3 to make the Scrake "Rage" more reliably when his health gets low(limited to Suicidal and HoE in Round 7)
 	if ( Level.Game.GameDifficulty >= 5.0 && !IsInState('SawingLoop') && !IsInState('RunningState') && float(Health) / HealthMax < 0.75 )
 		RangedAttack(InstigatedBy);
