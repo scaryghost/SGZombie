@@ -15,6 +15,7 @@ struct dmgScale {
 
 var array<oldNewZombiePair> replacementArray;
 var() globalconfig array<dmgScale> FPDmgScale;
+var() globalconfig array<dmgScale> SCDmgScale;
 
 static function int diffToMask(int difficulty) {
     if (difficulty == 7) {
