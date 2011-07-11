@@ -6,6 +6,9 @@ function TakeDamage( int Damage, Pawn InstigatedBy, Vector Hitlocation, Vector M
     local int dmgIndex,oldHealth;
 
     oldHealth= Health;
+
+    bIsHeadShot = IsHeadShot(Hitlocation, normal(Momentum), 1.0);
+
     dmgIndex= class'SGZombieMut'.static.findDmgTypeScale(String(damageType),class'SGZombieMut'.default.SCDmgScale);
     if (dmgIndex != -1 && (class'SGZombieMut'.default.SCDmgScale[dmgIndex].bNeedHeadShot && bIsHeadShot || !class'SGZombieMut'.default.SCDmgScale[dmgIndex].bNeedHeadShot) && 
             (class'SGZombieMut'.static.diffToMask(Level.Game.GameDifficulty) & class'SGZombieMut'.default.SCDmgScale[dmgIndex].difficultyMask) != 0) {

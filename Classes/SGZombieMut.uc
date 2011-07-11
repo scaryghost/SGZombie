@@ -109,11 +109,12 @@ static event string GetDescriptionText(string property) {
 }
 
 defaultproperties {
-    GroupName="KF"
+    GroupName="KFSGZombieMut"
     FriendlyName="SG Zombie"
     Description="Replaces the default specimens with a set of customized specimens that allow the user to configure their damage multipliers"
 
     bLog= false;
     replacementArray(0)=(oldClass="KFChar.ZombieFleshPound_CIRCUS",NewClass="SGZombie.SGZombieFleshpound")
+    replacementArray(1)=(oldClass="KFChar.ZombieScrake_CIRCUS",NewClass="SGZombie.SGZombieScrake")
 }
 
