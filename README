@@ -1,0 +1,52 @@
+Author:
+Scary Ghost
+
+Install:
+Copy the contents in the system folder to your Killing Floor system folder.
+
+Usage:
+Add the "SG Zombie" mutator to the list of active mutators.  The mutator 
+will replace the fleshpound and scrake with my modded ones.  Configuring 
+the damage scaling will require you to edit SGZombie.ini.  The ini file in 
+the download link is configured to emulate the current resistances and 
+weaknesses of the stock scrake and fleshpound.  To add your custom damage 
+type, you will need to have the following 4 variables assigned:
+
+dmgType
+                        The name of the weapon's damage type.  Must be in 
+                        the form: PackageName.DamageTypeClass
+
+dmgScale
+                        How much the damage will scale by
+
+bNeedHeadShot
+                        If true, a headshot needs to be landed for the 
+                        damage scale to apply
+
+difficultyMask
+                        What difficulties the damage scale will be applied 
+                        on.  This variable is a 5 bit bitmask, with bit 0 
+                        corresponding to beginner, and bit 5 corresponding 
+                        to HoE.  Setting the bit to 1 will have the damage 
+                        scale apply to that difficulty.  The value must be 
+                        written in decimal.
+
+The FPDmgScale variable corresponds to the fleshpound's damage scaling and 
+SCDmgScale refers to the scrake's damage scale. The following example 
+showes how to encode the fleshpound's crossbow resistance:
+
+FPDmgScale=(DmgType="KFMod.DamTypeCrossbowHeadShot",dmgScale=0.350000,
+bNeedHeadShot=True,difficultyMask=24)
+
+The damage type is KFMod.DamTypeCrossbowHeadShot.  It's damage scale is 
+0.35x and the hit must be a head shot.  In binary, 24 is 11000 so the 
+damage scaling only applies on HoE and Suicidal.  Again, for the 
+difficulty mask, you must express the number in decimal.  For some reason, 
+the mutator will interpret hex numbers as 0.
+
+Download:
+http://dl.dropbox.com/u/16251678/SGZombie_v1.0.zip
+
+
+Source code:
+https://github.com/scaryghost/SGZombie
