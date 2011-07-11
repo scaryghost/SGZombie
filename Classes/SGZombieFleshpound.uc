@@ -25,10 +25,10 @@ function TakeDamage( int Damage, Pawn InstigatedBy, Vector Hitlocation, Vector M
 
     bIsHeadShot = IsHeadShot(Hitlocation, normal(Momentum), 1.0);
 
-    dmgIndex= findDmgTypeScale(String(damageType),damageScaleArray);
-    if (dmgIndex != -1 && (damageScaleArray[dmgIndex].bNeedHeadShot && bIsHeadShot || !damageScaleArray[dmgIndex].bNeedHeadShot) && 
-            diffToMask(Level.Game.Difficulty) & damageScaleArray[dmgIndex].difficultyMask != 0) {
-        Damage*= damageScaleArray[dmgIndex].dmgScale;
+    dmgIndex= class'SGZombieMut'.static.findDmgTypeScale(String(damageType),class'SGZombieMut'.default.FPDmgScale);
+    if (dmgIndex != -1 && (class'SGZombieMut'.default.FPDmgScale[dmgIndex].bNeedHeadShot && bIsHeadShot || !class'SGZombieMut'.default.FPDmgScale[dmgIndex].bNeedHeadShot) && 
+            (class'SGZombieMut'.static.diffToMask(Level.Game.GameDifficulty) & class'SGZombieMut'.default.FPDmgScale[dmgIndex].difficultyMask) != 0) {
+        Damage*= class'SGZombieMut'.default.FPDmgScale[dmgIndex].dmgScale;
     } else {
         Damage*= 0.5;
     }
@@ -65,6 +65,8 @@ function TakeDamage( int Damage, Pawn InstigatedBy, Vector Hitlocation, Vector M
 	Super(KFMonster).takeDamage(Damage, instigatedBy, hitLocation, momentum, damageType,HitIndex) ;
 
 	TwoSecondDamageTotal += OldHealth - Health; // Corrected issue where only the Base Health is counted toward the FP's Rage in Balance Round 6(second attempt)
+
+    log("SGZombie.SGZombieFleshpound: Health lost: "$(OldHealth - Health));
 
 	if (!bDecapitated && TwoSecondDamageTotal > RageDamageThreshold && !bChargingPlayer &&
         (!(bCrispified && bBurnified) || bFrustrated) )
